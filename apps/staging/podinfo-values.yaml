@@ -11,8 +11,18 @@ spec:
     enable: false
   values:
     ingress:
+      annotations:
+        cert-manager.io/cluster-issuer: laniakea-ca-issuer
+        cert-manager.io/common-name: podinfo.laniakea.lan
+        cert-manager.io/subject-organizations: Altruego
+        cert-manager.io/subject-localities: Aalsmeer
+        cert-manager.io/subject-countries: NL
       hosts:
-        - host: podinfo.staging
+        - host: podinfo.laniakea.lan
           paths:
             - path: /
               pathType: ImplementationSpecific
+      tls:
+        - secretName: podinfo.laniakea-tls
+          hosts:
+          - podinfo.laniakea.lan
